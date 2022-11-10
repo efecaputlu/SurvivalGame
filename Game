@@ -1,0 +1,259 @@
+import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
+
+
+public class Game{
+
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        Timer timer = new Timer();
+
+
+        System.out.println("Welcome to the survival game where the goal is to survive.");
+
+        timer.schedule(new TimerTask() {
+            public void run() {
+                System.out.println("Type \"start\" if you are ready to begin.");
+            }
+        },  2000);
+
+        String start = scan.next();
+        while (!start.equals("start")){
+            System.out.println("So you don't want to play? Try again.");
+            start = scan.next();;
+        }
+
+            System.out.println("Are you a male or a female?");
+            System.out.println("Type \"m\" for male or \"f\" for female.");
+
+            String playerGender = scan.next();
+            while (!playerGender.equals("m") && !playerGender.equals("f")){
+                System.out.println("Try again.");
+                playerGender = scan.next();
+            }
+            if (playerGender.equals("m")){
+                playerGender = "male";
+            } else if (playerGender.equals("f")){
+                playerGender = "female";
+            }
+
+            System.out.println("What is your name?");
+            String playerName = scan.next();
+            System.out.println("Hey " + playerName + ". How old are you?");
+
+            int playerAge = scan.nextInt();
+            while (playerAge < 5 || playerAge > 120) {
+                System.out.println("Cap. Try again.");
+                playerAge = scan.nextInt();
+            }
+
+            Player player = new Player();
+            player.name = playerName;
+            player.gender = playerGender;
+            player.age = playerAge;
+
+            Player partner = new Player();
+            if(player.gender.equals("female")){
+                partner.name = "Susanna";
+            } else if(player.gender.equals("male")){
+                partner.name = "John";
+            }
+            partner.gender = playerGender;
+            partner.age = playerAge + 1;
+
+            System.out.println("Welcome to the survival game, " + player.name + "." + " There are only 2 rules.");
+        timer.schedule(new TimerTask() {
+            public void run() {
+                System.out.println("The first is don't die.");
+            }
+        },  2000);
+
+        timer.schedule(new TimerTask() {
+            public void run() {
+                System.out.println("The second is to follow the first.");
+            }
+        },  4000);
+
+        timer.schedule(new TimerTask() {
+            public void run() {
+                System.out.println("Type \"understood\" if you understand.");
+            }
+        },  6000);
+
+            String understand = scan.next();
+
+        while (!understand.equals("understood")){
+            System.out.println("Type \"understood\" if you understand.");
+            understand = scan.next();
+        }
+        timer.schedule(new TimerTask() {
+            public void run() {
+                System.out.println("Good luck.");
+            }
+        },  1000);
+
+
+        timer.schedule(new TimerTask() {
+            public void run() {
+                for (int i = 0; i< 50; i++) {
+                    System.out.println("\u000C");
+                }
+            }
+        },  3000);
+
+        timer.schedule(new TimerTask() {
+            public void run() {
+                System.out.println(partner.name + ": " + player.name.toUpperCase() + "! WAKE UP! THEY'RE ONTO US!");
+
+            }
+        },  4000);
+        timer.schedule(new TimerTask() {
+            public void run() {
+                System.out.println(player.name + ": It's 4 AM what are you talking about?");
+            }
+        },  6000);
+        timer.schedule(new TimerTask() {
+            public void run() {
+                System.out.println(partner.name + ": GET UP LET'S GO");
+            }
+        },  8000);
+        timer.schedule(new TimerTask() {
+            public void run() {
+                System.out.println("\u000C");
+                System.out.println("Go with " + partner.name + "(1) or Stay in bed(2)");
+            }
+        },  9000);
+
+        Player partner2 = new Player();
+        if(partner.gender.equals("female")){
+            partner2.name = "Kayla";
+        } else if(partner.gender.equals("male")){
+            partner2.name = "Alex";
+        }
+        partner2.gender = playerGender;
+        partner2.age = playerAge + 2;
+
+        String pick1 = scan.next();
+        while (!pick1.equals("1") && !pick1.equals("2")){
+            System.out.println("Type \"1\" or \"2\"");
+            pick1 = scan.next();
+        }
+
+        if (pick1.equals("1")){
+            timer.schedule(new TimerTask() {
+            public void run() {
+                System.out.println(player.name + ": Where are we going?");
+            }
+        },  500);
+
+        } else if(pick1.equals("2")) {
+            timer.schedule(new TimerTask() {
+                public void run() {
+                    System.out.println(player.name + ": Get outta here I'm going back to bed");
+                }
+            }, 500);
+            timer.schedule(new TimerTask() {
+                public void run() {
+                    System.out.println(partner.name + ": Fine then you can go to jail, not me");
+                }
+            }, 2500);
+            timer.schedule(new TimerTask() {
+                public void run() {
+                    System.out.println("\u000C");
+                    System.out.println(partner.name + " walks out the door.");
+                    System.out.println("\u000C");
+                }
+            }, 3500);
+            timer.schedule(new TimerTask() {
+                public void run() {
+                    System.out.println(player.name + ": Jail?!!?");
+                }
+            }, 5500);
+            timer.schedule(new TimerTask() {
+                public void run() {
+                    System.out.println(player.name + ": The cops are coming!?");
+                }
+            }, 7500);
+            timer.schedule(new TimerTask() {
+                public void run() {
+                    System.out.println(player.name + ": " + partner.name.toUpperCase() + "!!");
+                }
+            }, 9500);
+            timer.schedule(new TimerTask() {
+                public void run() {
+                    System.out.println(player.name + ": WAIT UP I'M COMING!");
+                }
+            }, 11500);
+            timer.schedule(new TimerTask() {
+                public void run() {
+                    System.out.println("\u000C");
+                    System.out.println(player.name + " rushes outside.");
+                    System.out.println("\u000C");
+                }
+            }, 12500);
+        }
+        if (partner.age >= 16) {
+            timer.schedule(new TimerTask() {
+                public void run() {
+                    System.out.println(partner.name + ": Just get in the car");
+                }
+            },  2500);
+            timer.schedule(new TimerTask() {
+                public void run() {
+                    System.out.println("\u000C");
+                    System.out.println("Both of you enter the car");
+                    System.out.println("\u000C");
+                }
+            },  3500);
+            timer.schedule(new TimerTask() {
+                public void run() {
+                    System.out.println(player.name + ": Tell me, what happened!?");
+                }
+            },  5500);
+            timer.schedule(new TimerTask() {
+                public void run() {
+                    System.out.println(partner.name + ": Long story. We gotta go to " + partner2.name + "'s house. I'll explain everything there");
+                }
+            },  7500);
+
+        } else {
+            timer.schedule(new TimerTask() {
+                public void run() {
+                    System.out.println(partner.name + ": Just get your bike and follow me. We're going to " + partner2.name + "'s house");
+                }
+            },  2500);
+            timer.schedule(new TimerTask() {
+                public void run() {
+                    System.out.println("\u000C");
+                    System.out.println("You start following " + partner.name + " with your bike.");
+                    System.out.println("\u000C");
+                }
+            },  3500);
+        }
+
+        //Arrived at partner2's house
+        if (pick1.equals("1")) {
+            timer.schedule(new TimerTask() {
+                public void run() {
+                    System.out.println("\u000C");
+                    System.out.println("Arrived at " + partner2.name + "'s house");
+                    System.out.println("\u000C");
+                }
+            }, 8500);
+        } else if (pick1.equals("0")){
+            timer.schedule(new TimerTask() {
+                public void run() {
+                    System.out.println("\u000C");
+                    System.out.println("Arrived at " + partner2.name + "'s house");
+                    System.out.println("\u000C");
+                }
+            }, 5500);
+        }
+
+
+
+
+    }
+}
+
